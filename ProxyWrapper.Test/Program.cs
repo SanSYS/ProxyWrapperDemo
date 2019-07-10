@@ -9,7 +9,9 @@ namespace ProxyWrapper.Test
     {
         static void Main(string[] args)
         {
-            IProxyWrapperStorage storage = new ProxyWrapperFileStorage("mock.json");
+            IProxyWrapperStorage storage = 
+                //new ProxyWrapperFileStorage("mock.json");
+                new ProxyWrapperPostgres($"server=localhost;userid=postgres;database=surrogatesdb;Pooling=false");
             
             ISomeService service = new ConcreteService();
 

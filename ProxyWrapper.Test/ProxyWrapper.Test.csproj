@@ -7,7 +7,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ProxyWrapper.FileStorage\ProxyWrapper.FileStorage.csproj" />
+      <ProjectReference Include="..\ProxyWrapper.Postgres\ProxyWrapper.Postgres.csproj" />
       <ProjectReference Include="..\ProxyWrapper\ProxyWrapper.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Npgsql.Json.NET" Version="4.0.7" />
     </ItemGroup>
 
 </Project>

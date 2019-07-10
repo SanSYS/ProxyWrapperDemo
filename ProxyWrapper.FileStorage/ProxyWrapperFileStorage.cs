@@ -73,4 +73,18 @@ namespace ProxyWrapper
             File.WriteAllText(_filePath, res);
         }
     }
+    
+    internal class MethodCall
+    {
+        public string WrappedService { get; set; }
+        
+        public string Method { get; set; }
+
+        public string Args { get; set; }
+
+        public object Response { get; set; }
+
+        public bool ActiveMock { get; set; }
+    }
+
 }
