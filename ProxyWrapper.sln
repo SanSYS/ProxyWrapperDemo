@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyWrapper", "ProxyWrapper\ProxyWrapper.csproj", "{7E87E854-D4D8-4D05-BC08-AF5D56D6D7C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyWrapper.FileStorage", "ProxyWrapper.FileStorage\ProxyWrapper.FileStorage.csproj", "{6CD6E9A3-6804-41EF-B682-ED0DCD6B0A33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyWrapper.Test", "ProxyWrapper.Test\ProxyWrapper.Test.csproj", "{54402DB3-09B8-4BF3-9BCD-31216DC04F5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{7E87E854-D4D8-4D05-BC08-AF5D56D6D7C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E87E854-D4D8-4D05-BC08-AF5D56D6D7C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E87E854-D4D8-4D05-BC08-AF5D56D6D7C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CD6E9A3-6804-41EF-B682-ED0DCD6B0A33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CD6E9A3-6804-41EF-B682-ED0DCD6B0A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CD6E9A3-6804-41EF-B682-ED0DCD6B0A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CD6E9A3-6804-41EF-B682-ED0DCD6B0A33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54402DB3-09B8-4BF3-9BCD-31216DC04F5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54402DB3-09B8-4BF3-9BCD-31216DC04F5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54402DB3-09B8-4BF3-9BCD-31216DC04F5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54402DB3-09B8-4BF3-9BCD-31216DC04F5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -9,6 +9,7 @@ namespace ProxyWrapper
     {
         private readonly T _wrappedObject;
         private IProxyWrapperStorage _wrapperStorage;
+        private readonly Type _wrappedService;
 
         public static T Wrap(T obj, IProxyWrapperStorage wrapperStorage)
         {
@@ -24,13 +25,21 @@ namespace ProxyWrapper
         private ProxyWrapper(T obj)
         {
             _wrappedObject = obj;
+            _wrappedService = typeof(T);
         }
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
             try
             {
-                bool success = _wrapperStorage.Invoke(binder, args, out object resFromStorage);
+                var cmd = new InvokeCommand()
+                {
+                    WrappedType = _wrappedService,
+                    Binder = binder,
+                    Args = args
+                };
+                
+                bool success = _wrapperStorage.Invoke(cmd, out object resFromStorage);
 
                 if (success)
                 {
@@ -38,12 +47,9 @@ namespace ProxyWrapper
                     return true;
                 }
 
-                result = _wrappedObject
-                    .GetType()
-                    .GetMethod(binder.Name)
-                    ?.Invoke(_wrappedObject, args);
+                result = _wrappedObject.GetType().GetMethod(binder.Name)?.Invoke(_wrappedObject, args);
 
-                _wrapperStorage.LastResult(binder, args, result);
+                _wrapperStorage.LastResult(cmd, result);
                 
                 return true;
             }
