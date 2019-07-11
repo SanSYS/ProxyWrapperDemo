@@ -11,7 +11,7 @@ namespace ProxyWrapper.Test
         {
             IProxyWrapperStorage storage = 
                 //new ProxyWrapperFileStorage("mock.json");
-                new ProxyWrapperPostgres($"server=localhost;userid=postgres;database=surrogatesdb;Pooling=false");
+                new ProxyWrapperPostgres("server=localhost;port=6432;userid=postgres;database=surrogatesdb;Pooling=false");
             
             ISomeService service = new ConcreteService();
 

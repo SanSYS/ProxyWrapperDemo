@@ -1,12 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyWrapper", "ProxyWrapper\ProxyWrapper.csproj", "{7E87E854-D4D8-4D05-BC08-AF5D56D6D7C6}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxyWrapper", "ProxyWrapper\ProxyWrapper.csproj", "{7E87E854-D4D8-4D05-BC08-AF5D56D6D7C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyWrapper.FileStorage", "ProxyWrapper.FileStorage\ProxyWrapper.FileStorage.csproj", "{6CD6E9A3-6804-41EF-B682-ED0DCD6B0A33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxyWrapper.FileStorage", "ProxyWrapper.FileStorage\ProxyWrapper.FileStorage.csproj", "{6CD6E9A3-6804-41EF-B682-ED0DCD6B0A33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyWrapper.Test", "ProxyWrapper.Test\ProxyWrapper.Test.csproj", "{54402DB3-09B8-4BF3-9BCD-31216DC04F5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxyWrapper.Test", "ProxyWrapper.Test\ProxyWrapper.Test.csproj", "{54402DB3-09B8-4BF3-9BCD-31216DC04F5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyWrapper.Postgres", "ProxyWrapper.Postgres\ProxyWrapper.Postgres.csproj", "{DAC83126-AE1A-4FD9-9ADE-FEFF58805FE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxyWrapper.Postgres", "ProxyWrapper.Postgres\ProxyWrapper.Postgres.csproj", "{DAC83126-AE1A-4FD9-9ADE-FEFF58805FE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyWrapper.Web", "ProxyWrapper.Web\ProxyWrapper.Web.csproj", "{96A933D9-A634-4B87-B10A-0E1E03B7BFB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyWrapper.Contract", "ProxyWrapper.Contract\ProxyWrapper.Contract.csproj", "{41EB67DB-C703-4777-A999-87335B9718B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +37,19 @@ Global
 		{DAC83126-AE1A-4FD9-9ADE-FEFF58805FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAC83126-AE1A-4FD9-9ADE-FEFF58805FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAC83126-AE1A-4FD9-9ADE-FEFF58805FE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96A933D9-A634-4B87-B10A-0E1E03B7BFB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96A933D9-A634-4B87-B10A-0E1E03B7BFB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96A933D9-A634-4B87-B10A-0E1E03B7BFB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96A933D9-A634-4B87-B10A-0E1E03B7BFB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41EB67DB-C703-4777-A999-87335B9718B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41EB67DB-C703-4777-A999-87335B9718B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41EB67DB-C703-4777-A999-87335B9718B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41EB67DB-C703-4777-A999-87335B9718B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {06F70962-F0F1-4CF6-8184-7EF3C60256E5}
 	EndGlobalSection
 EndGlobal

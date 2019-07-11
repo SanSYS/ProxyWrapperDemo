@@ -9,7 +9,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ProxyWrapper\ProxyWrapper.csproj" />
+      <ProjectReference Include="..\ProxyWrapper.Contract\ProxyWrapper.Contract.csproj" />
     </ItemGroup>
 
 </Project>

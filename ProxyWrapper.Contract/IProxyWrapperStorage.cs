@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Dynamic;
+using System.Threading.Tasks;
 
 namespace ProxyWrapper
 {
@@ -7,6 +9,7 @@ namespace ProxyWrapper
     {
         bool Invoke(InvokeCommand invokeCommad, out object result);
         void LastResult(InvokeCommand invokeCommad, object result);
+        Task<IEnumerable<Interface>> GetInterfaces();
     }
 
     public struct InvokeCommand

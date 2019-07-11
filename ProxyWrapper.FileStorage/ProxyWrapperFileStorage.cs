@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace ProxyWrapper
@@ -71,6 +72,15 @@ namespace ProxyWrapper
             string res = JsonConvert.SerializeObject(_calls, Formatting.Indented, _jsonSettigs);
             
             File.WriteAllText(_filePath, res);
+        }
+
+        public Task<IEnumerable<Interface>> GetInterfaces()
+        {
+            return Task.FromResult(_calls.GroupBy(p => p.WrappedService).Select(p => new Interface()
+            {
+                WrappedService = p.Key,
+                ActiveMocks = p.Count()
+            }));
         }
     }
     
