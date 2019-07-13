@@ -2,3 +2,8 @@
 packages/
 bin/
 obj/
+/.vs/ProxyWrapper/config/applicationhost.config
+/.vs/ProxyWrapper/DesignTimeBuild/.dtbcache
+/.vs/ProxyWrapper/v16/Server/sqlite3/db.lock
+/.vs/ProxyWrapper/v16/Server/sqlite3/storage.ide
+/.vs/ProxyWrapper/v16/.suo
