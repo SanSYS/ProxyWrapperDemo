@@ -1,15 +1,25 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>ProxyWrapper UI</title>
+
+    <style>
+        #interfaces{
+            max-height: 200px;
+            overflow: auto;
+        }
+        textarea{ width: 100%; }
+    </style>
+
     <script type="application/javascript">
-        function api(method, url){
+        function api(method, url, data){
             var request = new XMLHttpRequest();
 
             request.open(method, url, false);
 
             request.setRequestHeader("Accept", "application/json;charset=UTF-8");
+            request.setRequestHeader("Content-Type", "application/json");
 
             var res = null;
 
@@ -27,31 +37,107 @@
                 alert(request.responseText);
             };
 
-            request.send();
+            request.send(JSON.stringify(data));
 
             return res;
         }
 
         api.get = function (url){ return api("GET", url); };
-        api.post = function (url){ return api("POST", url); };
+        api.post = function (url, data){ return api("POST", url, data); };
+
+        function create(name, innerText) {
+            var el = document.createElement(name);
+
+            if (innerText) {
+                el.innerText = innerText;
+            }
+
+            el.child = function (name, innerText) {
+                var ch = create(name, innerText);
+                this.appendChild(ch);
+                return ch;
+            };
+
+            el.setTitle = function (title) {
+                this.title = title;
+                return this;
+            };
+
+            el.click = function (fun) {
+                this.onclick = fun;
+                return this;
+            };
+
+            el.appendTo = function (place){
+                var s = place.length ? document.getElementById(place) : place;
+                s.appendChild(this);
+                return this;
+            };
+
+            return el;
+        }
 
         var interfaces = api.get("/api/proxy/interfaces");
 
         window.onload = function () {
+            var placeholder = create('div').appendTo("interfaces");
+
             for (var i = 0; i < interfaces.length; i++){
                 var item = interfaces[i];
 
-                var div = document.createElement("div");
-                var btn = document.createElement("button");
-                btn.innerText = item.wrappedService + " - " + item.activeMocks;
-
-                div.appendChild(btn);
-
-                document.body.appendChild(div);
+                placeholder
+                    .child("div")
+                    .child("button", item.wrappedService + " - " + item.activeMocks)
+                    .setTitle(item.wrappedService)
+                    .click(showMethods);
             }
+        };
+
+        function showMethods() {
+            var className = this.title;
+
+            var placeholder = document.getElementById('methods');
+
+            var res = api.get("/api/proxy/methods?service=" + btoa(className));
+
+            placeholder.innerHTML = "";
+
+            create("h3", className).appendTo(placeholder);
+
+            for (var i = 0; i < res.length; i++){
+                var item = res[i];
+
+                var div = create("div").appendTo(placeholder);
+
+                div.child("h4", item.method);
+
+                var args = div.child("textarea", item.args);
+                var response = div.child("textarea", item.response);
+                var isActiveMock = div.child("label", "Active mock").child("input");
+
+                isActiveMock.checked = item.activeMock;
+                isActiveMock.type = "checkbox";
+
+                div.child("button", "Change response")
+                   .click(saveResponse.bind(div, args, response, isActiveMock, item.id));
+
+                div.child("hr");
+            }
+        }
+
+        function saveResponse(args, response, isActiveMock, id) {
+            api.post("/api/proxy/save", {
+                id: id,
+                args: args.value,
+                response: response.value,
+                activeMock: isActiveMock.checked
+            });
         }
     </script>
 </head>
 <body>
+    <div><input type="text" placeholder="Filter"></div>
+    <div id="interfaces"></div>
+    <div id="methods"></div>
 </body>
 </html>

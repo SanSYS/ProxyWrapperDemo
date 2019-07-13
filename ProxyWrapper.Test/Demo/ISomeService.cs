@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 
-namespace ProxyWrapper.Demo
+namespace ProxyWrapper.Test.Demo
 {
-    public interface ISomeService
+    public interface ISomeService<T, T2>
     {
         string GetString(int id);
 
         void VoidWork();
 
         Result GetResultObject(Filter filter);
-        
+
         List<Result> GetResultObjects(List<Filter> filter);
     }
 

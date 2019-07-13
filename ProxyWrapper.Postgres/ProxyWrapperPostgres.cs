@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Npgsql;
 using Dapper;
 using Newtonsoft.Json;
+using ProxyWrapper.Contract;
 
 namespace ProxyWrapper
 {
@@ -29,16 +30,16 @@ namespace ProxyWrapper
 
                 conn.Execute(@"
                             CREATE EXTENSION IF NOT EXISTS ""uuid-ossp"";
-                    
+
                             create table if not exists surrogates (
-                                id uuid primary key, 
+                                id uuid primary key,
                                 WrappedService text not null,
                                 Method text not null,
                                 Args text,
-                                Response text, 
+                                Response text,
                                 ActiveMock boolean
                             );
-                            
+
                             create index if not exists idx_surrogates_service_method on surrogates(WrappedService, Method);
                             ");
             }
@@ -51,7 +52,7 @@ namespace ProxyWrapper
             using (var conn = CreateConnection())
             {
                 var callRes = GetCallRes(invokeCommad, conn, jsonArgs);
-                
+
                 if (callRes != null && callRes.ActiveMock)
                 {
                     result = JsonConvert.DeserializeObject(callRes.Response, _jsonSettigs);
@@ -100,7 +101,30 @@ namespace ProxyWrapper
 
         public Task<IEnumerable<Interface>> GetInterfaces()
         {
-            return Exec(conn => conn.QueryAsync<Interface>("SELECT WrappedService, sum(activemock::int) activemocks from surrogates group by 1 order by 1"));
+            return Exec(c =>
+                c.QueryAsync<Interface>(
+                    "SELECT WrappedService, sum(activemock::int) activemocks from surrogates group by 1 order by 1"
+                )
+            );
+        }
+
+        public Task<IEnumerable<ServiceMethodInfo>> GetServiceMethods(string service)
+        {
+            return Exec(c =>
+                c.QueryAsync<ServiceMethodInfo>(
+                    "select id, method, args, response, activemock from surrogates where WrappedService = @service order by method, id",
+                    new { service }
+                    ));
+        }
+
+        public Task Save(ServiceMethodInfo info)
+        {
+            return Exec(c =>
+                c.ExecuteAsync(
+                    "update surrogates set args = @args, response = @response, activemock = @activemock where id = @id",
+                    info
+                )
+            );
         }
 
         private async Task<T> Exec<T>(Func<NpgsqlConnection, Task<T>> func)
@@ -118,15 +142,15 @@ namespace ProxyWrapper
             var conn = new NpgsqlConnection(_connectionString);
 
             conn.Open();
-            
+
             return conn;
         }
     }
-    
+
     internal class MethodCall
     {
         public string WrappedService { get; set; }
-        
+
         public string Method { get; set; }
 
         public string Args { get; set; }

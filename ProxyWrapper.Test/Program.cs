@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ProxyWrapper.Demo;
+using ProxyWrapper.Test.Demo;
 
 namespace ProxyWrapper.Test
 {
@@ -9,19 +9,19 @@ namespace ProxyWrapper.Test
     {
         static void Main(string[] args)
         {
-            IProxyWrapperStorage storage = 
+            IProxyWrapperStorage storage =
                 //new ProxyWrapperFileStorage("mock.json");
                 new ProxyWrapperPostgres("server=localhost;port=6432;userid=postgres;database=surrogatesdb;Pooling=false");
-            
-            ISomeService service = new ConcreteService();
 
-            service = ProxyWrapper<ISomeService>.Wrap(service, storage);
-            
+            ISomeService<Filter, Filter> service = new ConcreteService();
+
+            service = ProxyWrapper<ISomeService<Filter, Filter>>.Wrap(service, storage);
+
             service.VoidWork();
-            
+
             Console.WriteLine(service.GetString(3));
             Console.WriteLine(service.GetString(1));
-            
+
             Console.WriteLine(service.GetResultObject(new Filter(){ Limit = 4, Name = "name1"}).Name);
 
             service.GetResultObjects(new List<Filter>

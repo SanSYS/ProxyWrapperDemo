@@ -21,8 +21,4 @@
     <ProjectReference Include="..\ProxyWrapper.Postgres\ProxyWrapper.Postgres.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models" />
-  </ItemGroup>
-
 </Project>

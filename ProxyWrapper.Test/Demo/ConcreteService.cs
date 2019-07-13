@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProxyWrapper.Demo
+namespace ProxyWrapper.Test.Demo
 {
-    public class ConcreteService:ISomeService
+    public class ConcreteService:ISomeService<Filter, Filter>
     {
         public string GetString(int id)
         {
