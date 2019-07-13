@@ -7,8 +7,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using ProxyWrapper.Web;
 
-namespace ProxyWrapper.Web
+namespace ProxyWrapperWeb
 {
     public class Program
     {

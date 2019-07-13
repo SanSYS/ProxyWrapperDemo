@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ProxyWrapper.Test.Demo
 {
-    public class ConcreteService:ISomeService<Filter, Filter>
+    public class ConcreteService:ISomeService
     {
         public string GetString(int id)
         {

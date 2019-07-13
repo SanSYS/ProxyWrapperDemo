@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ProxyWrapper;
 using ProxyWrapper.Contract;
 
-namespace ProxyWrapper.Web.Controllers
+namespace ProxyWrapperWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

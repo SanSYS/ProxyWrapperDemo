@@ -17,11 +17,11 @@ namespace ProxyWrapper.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             services.AddSingleton<IProxyWrapperStorage>(
                 new ProxyWrapperPostgres("server=localhost;port=6432;userid=postgres;database=surrogatesdb;Pooling=false")
             );
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

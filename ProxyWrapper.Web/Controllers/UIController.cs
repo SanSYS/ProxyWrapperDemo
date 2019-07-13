@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ProxyWrapper.Web.Controllers
+namespace ProxyWrapperWeb.Controllers
 {
     [Route("UI")]
     [ApiController]

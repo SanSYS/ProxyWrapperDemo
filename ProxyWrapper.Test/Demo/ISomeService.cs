@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace ProxyWrapper.Test.Demo
 {
-    public interface ISomeService<T, T2>
+    public interface ISomeService
     {
         string GetString(int id);
 
