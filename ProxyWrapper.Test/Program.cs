@@ -12,6 +12,7 @@ namespace ProxyWrapper.Test
     {
         static void Main(string[] args)
         {
+            //docker run -p 6432:5432 postgres
             IProxyWrapperStorage storage =
                 //new ProxyWrapperFileStorage("mock.json");
                 new ProxyWrapperPostgres("server=localhost;port=6432;userid=postgres;database=surrogatesdb;Pooling=false");
