@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Autofac;
+using Autofac.Core;
 using ProxyWrapper.Test.Demo;
 
 namespace ProxyWrapper.Test
@@ -14,9 +16,16 @@ namespace ProxyWrapper.Test
                 //new ProxyWrapperFileStorage("mock.json");
                 new ProxyWrapperPostgres("server=localhost;port=6432;userid=postgres;database=surrogatesdb;Pooling=false");
 
-            ISomeService service = new ConcreteService();
+            var builder = new ContainerBuilder();
 
+            builder.RegisterType<ConcreteService>()
+                   .As<ISomeService>();
+
+            var container = builder.Build();
+
+            var service = container.Resolve<ISomeService>();
             service = ProxyWrapper<ISomeService>.Wrap(service, storage);
+
 
             while (true)
             {

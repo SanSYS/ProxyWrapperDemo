@@ -15,7 +15,7 @@ namespace ProxyWrapper
         {
             if (!typeof(T).IsInterface)
                 throw new ArgumentException("T1 must be an Interface");
-            
+
             return new ProxyWrapper<T>(obj)
             {
                 _wrapperStorage = wrapperStorage
@@ -38,7 +38,7 @@ namespace ProxyWrapper
                     Binder = binder,
                     Args = args
                 };
-                
+
                 bool success = _wrapperStorage.Invoke(cmd, out object resFromStorage);
 
                 if (success)
@@ -50,7 +50,7 @@ namespace ProxyWrapper
                 result = _wrappedObject.GetType().GetMethod(binder.Name)?.Invoke(_wrappedObject, args);
 
                 _wrapperStorage.LastResult(cmd, result);
-                
+
                 return true;
             }
             catch (TargetInvocationException ex)
